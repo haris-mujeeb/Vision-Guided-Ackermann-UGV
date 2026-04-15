@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<robot name="my_robot">
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.6 0.4 0.2" /> 
+            </geometry>
+            <material name="cyan">
+                <color rgba="0 1 1 0.6" />
+            </material>
+            <origin xyz="0 0 0.1" rpy="0 0 0" />
+        </visual>
+    </link>
+
+    <link name="wheel_1">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.1" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.5 0.5 0.5 1" />
+            </material>
+            <origin xyz="0 0 -0.05" rpy="0 0 0"></origin>
+        </visual>
+    </link>
+
+    <link name="wheel_2">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.1" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.5 0.5 0.5 1" />
+            </material>
+            <origin xyz="0 0 0.05" rpy="0 0 0"></origin>
+        </visual>
+    </link>
+
+    <link name="wheel_3">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.1" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.5 0.5 0.5 1" />
+            </material>
+            <origin xyz="0 0 -0.05" rpy="0 0 0"></origin>
+        </visual>
+    </link>
+    
+    <link name="wheel_4">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.1" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.5 0.5 0.5 1" />
+            </material>
+            <origin xyz="0 0 0.05" rpy="0 0 0"></origin>
+        </visual>
+    </link>
+
+    <link name="cylinder">
+        <visual>
+            <geometry>
+                <cylinder radius="0.025" length="0.2" />
+            </geometry>
+            <material name="white">
+                <color rgba="1 1 1 1" />
+            </material>
+            <origin xyz="0 0 0.1" rpy="0 0 0"></origin>
+        </visual>
+    </link>
+    
+    <link name="camera">
+        <visual>
+            <geometry>
+                <box size="0.05 0.05 0.05" /> 
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0 0.8 1" />
+            </material>
+            <origin xyz="0 0 0.025" rpy="0 0 0"></origin>
+        </visual>
+    </link>
+
+    <joint name="base_wheel_1_joint" type="continuous">
+        <parent link="base_link"></parent>
+        <child link="wheel_1"></child>
+        <origin xyz= "0.2 0.2 0.1" rpy="1.5708 0 0"></origin>
+        <axis xyz="0 0 1" />
+    </joint>
+
+    <joint name="base_wheel_2_joint" type="continuous">
+        <parent link="base_link"></parent>
+        <child link="wheel_2"></child>
+        <origin xyz= "0.2 -0.2 0.1" rpy="1.5708 0 0"></origin>
+        <axis xyz="0 0 1" />
+    </joint>    
+
+    <joint name="base_wheel_3_joint" type="continuous">
+        <parent link="base_link"></parent>
+        <child link="wheel_3"></child>
+        <origin xyz= "-0.2 0.2 0.1" rpy="1.5708 0 0"></origin>
+        <axis xyz="0 0 1" />
+    </joint>
+
+    <joint name="base_wheel_4_joint" type="continuous">
+        <parent link="base_link"></parent>
+        <child link="wheel_4"></child>
+        <origin xyz= "-0.2 -0.2 0.1" rpy="1.5708 0 0"></origin>
+        <axis xyz="0 0 1" />
+    </joint>
+
+    <joint name="base_cylinder_joint" type="fixed">
+        <parent link="base_link"></parent>
+        <child link="cylinder"></child>
+        <origin xyz= "0 0 0.2" rpy="0 0 0"></origin>
+    </joint>
+
+    <joint name="base_camera_joint" type="fixed">
+        <parent link="cylinder"></parent>
+        <child link="camera"></child>
+        <origin xyz= "0 0 0.2" rpy="0 0 0"></origin>
+    </joint>
+
+</robot>
