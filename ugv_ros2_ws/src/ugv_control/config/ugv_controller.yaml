@@ -1,0 +1,57 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100 # Hz
+    use_sim_time: true
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    ugv_controller:
+      type: ackermann_steering_controller/AckermannSteeringController
+
+
+ugv_controller:
+  ros__parameters:
+    use_stamped_vel: true
+
+    rear_wheels_names: ["left_rear_joint", "right_rear_joint"]
+    front_wheels_names: ["front_steer_left_joint", "front_steer_right_joint"]
+
+    wheelbase: 0.3515                # Front and Rear Wheels axes distance
+    front_wheel_track: 0.42          # Distance between front steer joints
+    rear_wheel_track: 0.457          # Distance between rear drive wheels
+    traction_wheels_radius: 0.0625   # Assuming this is correct from your previous file
+
+    # -------------------------------------------------------------
+    # Odometry and TF Configuration
+    # -------------------------------------------------------------
+    position_feedback: true 
+
+    pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
+    twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
+
+    wheelbase_multiplier: 1.0
+    wheel_radius_multiplier: 1.0
+    steer_pos_multiplier: 1.0
+
+    publish_rate: 50.0               # Usually matches update_rate or sits around 50Hz for odom
+    open_loop: false
+    base_frame_id: "base_link"
+    odom_frame_id: "odom"
+    enable_odom_tf: true             # Set to true to move in RViz relative to odom frame
+
+    # -------------------------------------------------------------
+    # Limits
+    # -------------------------------------------------------------
+    linear:
+      x:
+        has_velocity_limits: true
+        max_velocity: 1.0            # m/s
+        has_acceleration_limits: true
+        max_acceleration: 2.0        # m/s^2
+    angular:
+      z:
+        has_velocity_limits: true
+        max_velocity: 1.0            # rad/s
+        has_acceleration_limits: true
+        max_acceleration: 3.0        # rad/s^2
